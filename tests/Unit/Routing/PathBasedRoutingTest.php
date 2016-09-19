@@ -36,9 +36,9 @@ class PathBasedRoutingTest extends TestAbstract
 	}
 
 	/**
-	 * @test:
+	 * @test
 	 */
-	public function notFindByFile_UpperFistLetter()
+	public function findByFile_UpperFistLetter()
 	{
 		$route = new PathBasedRouting($this->getControllerPath(), $this->baseNameSpace);
 		$this->assertEquals(new TestController(), $route->getController('/Test'));
@@ -73,6 +73,15 @@ class PathBasedRoutingTest extends TestAbstract
 
 	/**
 	 * @test
+	 */
+	public function notFound()
+	{
+		$route = new PathBasedRouting($this->getControllerPath() . DIRECTORY_SEPARATOR, $this->baseNameSpace);
+		$this->assertFalse($route->getController('/foo'));
+	}
+
+	/**
+	 * @test
 	 * @expectedException \Systream\Routing\Exception\ControllerNotFoundException
 	 */
 	public function pathNotExists()
@@ -84,7 +93,7 @@ class PathBasedRoutingTest extends TestAbstract
 	}
 
 	/**
-	 * @_test
+	 * @test
 	 */
 	public function indexMatch()
 	{
@@ -93,7 +102,7 @@ class PathBasedRoutingTest extends TestAbstract
 	}
 
 	/**
-	 * @_test
+	 * @test
 	 */
 	public function indexMatch_withNull()
 	{
@@ -102,14 +111,13 @@ class PathBasedRoutingTest extends TestAbstract
 	}
 
 	/**
-	 * @_test
+	 * @test
 	 */
 	public function findWithGetParams()
 	{
 		$route = new PathBasedRouting($this->getControllerPath(), $this->baseNameSpace);
 		$this->assertEquals(new IndexController(), $route->getController('/?test=1'));
 	}
-
 
 	/**
 	 * @test
