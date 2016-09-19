@@ -1,0 +1,24 @@
+{
+  "name": "systream/router",
+  "licence": "MIT",
+  "keywords": ["router", "controller"],
+  "authors": [
+    {
+      "name": "Peter Tihanyi",
+      "email": "tihi@systream.hu"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Systream\\": "src/",
+      "Tests\\Systream\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=5.4.0 || >= 7.0",
+    "zendframework/zend-diactoros": "1.3.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5"
+  }
+}
