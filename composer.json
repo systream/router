@@ -1,6 +1,6 @@
 {
   "name": "systream/router",
-  "licence": "MIT",
+  "license": "MIT",
   "keywords": ["router", "controller"],
   "authors": [
     {
