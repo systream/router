@@ -24,7 +24,7 @@ This library requires `php 5.6` or higher, but also works on php 5.4.
 $route = new Router();
 $route->addRoute(new SimpleRouting('/foo', new TestController()));
 $route->addRoute(new SimpleRouting('/foo/{id}', new TestController2()));
-$route->addRoute(new PathBasedRouting('app/Controller/Api, '\MyAppNamespace\Controller\Api'));
+$route->addRoute(new PathBasedRouting('app/Controller/Api', '\MyAppNamespace\Controller\Api'));
 $route->addRoute(new FinalMatchRouting(new NotFoundController()));
 $serverRequest = ServerRequestFactory::fromGlobals();
 $route->dispatch($serverRequest, new SapiEmitter());
