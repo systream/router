@@ -11,27 +11,18 @@ abstract class ControllerAbstract implements ControllerInterface
 
 	/**
 	 * @param string $methodType
-	 * @param ServerRequestInterface $serverRequest
 	 * @param ResponseInterface $response
-	 * @param array $params
+	 * @param ControllerRequestInterface $controllerRequest
 	 * @return ResponseInterface
 	 */
 	public function callMethod(
 		$methodType,
-		ServerRequestInterface $serverRequest,
 		ResponseInterface $response,
-		array $params
+		ControllerRequestInterface $controllerRequest
 	) {
-
 		$method = strtolower($methodType);
 		if (method_exists($this, $method)) {
-
-			$params = array_merge(
-				array($serverRequest, $response),
-				$params
-			);
-
-			return call_user_func_array(array($this, $method), $params);
+			return $this->$method($response, $controllerRequest);
 		}
 
 		return $this->getMethodNotAllowedResponse($response);

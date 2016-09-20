@@ -3,9 +3,8 @@
 namespace Tests\Systream\Unit\Routing\Controller;
 
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Systream\Controller\ControllerAbstract;
+use Systream\Controller\ControllerRequest;
 use Zend\Diactoros\Response;
 
 class TestController extends ControllerAbstract
@@ -30,82 +29,59 @@ class TestController extends ControllerAbstract
 	}
 
 	/**
-	 * @param ServerRequestInterface $serverRequest
 	 * @param Response $response
-	 * @param null $param1
+	 * @param ControllerRequest $request
 	 * @return Response
 	 */
-	public function get(ServerRequestInterface $serverRequest, Response $response, $param1 = null)
+	public function get(Response $response, ControllerRequest $request)
 	{
-		if ($param1) {
-			$response->getBody()->write('param: ' . $param1 . ' ');
+		if ($request->getParam('id')) {
+			$response->getBody()->write('param: ' . $request->getParam('id') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
-	 * @param ServerRequestInterface $serverRequest
 	 * @param Response $response
+	 * @param ControllerRequest $request
 	 * @return Response
 	 */
-	public function options(ServerRequestInterface $serverRequest, Response $response, $param1 = null, $param2 = null)
+	public function options(Response $response, ControllerRequest $request)
 	{
-		if ($param1 && $param2) {
-			$response->getBody()->write('param: ' . $param1 . ',' . $param2 . ' ');
+		if ($request->getParam('id') && $request->getParam('id2')) {
+			$response->getBody()->write('param: ' . $request->getParam('id') . ',' . $request->getParam('id2') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
-	 * @param ServerRequestInterface $serverRequest
 	 * @param Response $response
+	 * @param ControllerRequest $request
 	 * @return Response
 	 */
-	public function post(ServerRequestInterface $serverRequest, Response $response)
+	public function post(Response $response, ControllerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
-	 * @param ServerRequestInterface $serverRequest
 	 * @param Response $response
+	 * @param ControllerRequest $request
 	 * @return Response
 	 */
-	public function put(ServerRequestInterface $serverRequest, Response $response)
+	public function put(Response $response, ControllerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
-	 * @param ServerRequestInterface $serverRequest
 	 * @param Response $response
+	 * @param ControllerRequest $request
 	 * @return Response
 	 */
-	public function delete(ServerRequestInterface $serverRequest, Response $response)
+	public function delete(Response $response, ControllerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
-	}
-
-	/**
-	 * @param string $methodType
-	 * @param ServerRequestInterface $serverRequest
-	 * @param ResponseInterface $response
-	 * @param array $params
-	 * @return ResponseInterface|void
-	 */
-	public function callMethod(
-		$methodType,
-		ServerRequestInterface $serverRequest,
-		ResponseInterface $response,
-		array $params
-	) {
-		$this->calledMethods[] = array(
-			'methodType' => $methodType,
-			'serverRequest' => $serverRequest,
-			'params' => $params
-		);
-
-		return parent::callMethod($methodType, $serverRequest, $response, $params);
 	}
 
 	/**
