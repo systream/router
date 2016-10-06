@@ -67,11 +67,10 @@ class ControllerRequest implements ControllerRequestInterface
 	/**
 	 * Return with post parameters
 	 *
-	 * @param static $parameterName
 	 * @return mixed
 	 */
-	public function getAttribute($parameterName)
+	public function getQueryParams()
 	{
-		return $this->request->getAttribute($parameterName);
+		return $this->request->getQueryParams();
 	}
 }

@@ -23,10 +23,9 @@ interface ControllerRequestInterface
 	/**
 	 * Return with post parameters
 	 *
-	 * @param static $parameterName
 	 * @return mixed
 	 */
-	public function getAttribute($parameterName);
+	public function getQueryParams();
 
 	/**
 	 * @return array
