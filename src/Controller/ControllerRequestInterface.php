@@ -21,14 +21,22 @@ interface ControllerRequestInterface
 	public function getServerRequest();
 
 	/**
+	 * Return with post parameters
+	 *
+	 * @param static $parameterName
+	 * @return mixed
+	 */
+	public function getAttribute($parameterName);
+
+	/**
 	 * @return array
 	 */
-	public function getParams();
+	public function getUrlParams();
 
 	/**
 	 * @param string $paramName
 	 * @return string
 	 */
-	public function getParam($paramName);
+	public function getUrlParam($paramName);
 
 }

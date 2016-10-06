@@ -50,7 +50,7 @@ class ControllerRequest implements ControllerRequestInterface
 	/**
 	 * @return array
 	 */
-	public function getParams()
+	public function getUrlParams()
 	{
 		return $this->params;
 	}
@@ -59,8 +59,19 @@ class ControllerRequest implements ControllerRequestInterface
 	 * @param string $paramName
 	 * @return string
 	 */
-	public function getParam($paramName)
+	public function getUrlParam($paramName)
 	{
 		return isset($this->params[$paramName]) ? $this->params[$paramName] : null;
+	}
+
+	/**
+	 * Return with post parameters
+	 *
+	 * @param static $parameterName
+	 * @return mixed
+	 */
+	public function getAttribute($parameterName)
+	{
+		return $this->request->getAttribute($parameterName);
 	}
 }

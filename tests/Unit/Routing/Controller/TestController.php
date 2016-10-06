@@ -35,8 +35,8 @@ class TestController extends ControllerAbstract
 	 */
 	public function get(Response $response, ControllerRequest $request)
 	{
-		if ($request->getParam('id')) {
-			$response->getBody()->write('param: ' . $request->getParam('id') . ' ');
+		if ($request->getUrlParam('id')) {
+			$response->getBody()->write('param: ' . $request->getUrlParam('id') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
@@ -48,8 +48,8 @@ class TestController extends ControllerAbstract
 	 */
 	public function options(Response $response, ControllerRequest $request)
 	{
-		if ($request->getParam('id') && $request->getParam('id2')) {
-			$response->getBody()->write('param: ' . $request->getParam('id') . ',' . $request->getParam('id2') . ' ');
+		if ($request->getUrlParam('id') && $request->getUrlParam('id2')) {
+			$response->getBody()->write('param: ' . $request->getUrlParam('id') . ',' . $request->getUrlParam('id2') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
