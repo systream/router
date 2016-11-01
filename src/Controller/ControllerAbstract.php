@@ -5,9 +5,14 @@ namespace Systream\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 
 abstract class ControllerAbstract implements ControllerInterface
 {
+	/**
+	 * @var DependencyInjectionContainerInterface
+	 */
+	private $dependencyInjectionContainer;
 
 	/**
 	 * @param string $methodType
@@ -36,4 +41,23 @@ abstract class ControllerAbstract implements ControllerInterface
 	{
 		return $response->withStatus(405, 'Method not allowed');
 	}
+
+	/**
+	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
+	 * @return void
+	 */
+	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer)
+	{
+		$this->dependencyInjectionContainer = $dependencyInjectionContainer;
+	}
+
+	/**
+	 * @return DependencyInjectionContainerInterface
+	 */
+	protected function getDependencyInjectionContainer()
+	{
+		return $this->dependencyInjectionContainer;
+	}
+
+
 }

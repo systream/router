@@ -3,6 +3,7 @@ namespace Systream\Router;
 
 
 use Psr\Http\Message\ServerRequestInterface;
+use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 use Systream\Routing\RouteInterface;
 use Zend\Diactoros\Response\EmitterInterface;
 
@@ -19,5 +20,11 @@ interface RouterInterface
 	 * @param EmitterInterface $emitter
 	 */
 	public function dispatch(ServerRequestInterface $serverRequest, EmitterInterface $emitter);
+
+	/**
+	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
+	 * @return void
+	 */
+	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer);
 
 }

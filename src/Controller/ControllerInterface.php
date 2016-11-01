@@ -4,6 +4,7 @@ namespace Systream\Controller;
 
 
 use Psr\Http\Message\ResponseInterface;
+use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 
 interface ControllerInterface
 {
@@ -18,4 +19,10 @@ interface ControllerInterface
 		ResponseInterface $response,
 		ControllerRequestInterface $controllerRequest
 	);
+
+	/**
+	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
+	 * @return void
+	 */
+	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer);
 }

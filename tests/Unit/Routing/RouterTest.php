@@ -2,6 +2,7 @@
 
 namespace Tests\Systream\Unit\Routing;
 
+use Systream\DependencyInjectionContainer;
 use Systream\Router;
 use Systream\Routing\FinalMatchRouting;
 use Systream\Routing\SimpleRouting;
@@ -180,6 +181,25 @@ class RouterTest extends TestAbstract
 			array('DELETE'),
 			array('OPTIONS'),
 		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function routeDI()
+	{
+		$serverRequest = ServerRequestFactory::fromGlobals([
+			'REQUEST_URI' => '/foo',
+			'REQUEST_METHOD' => 'GET'
+		]);
+
+		$route = new Router();
+		$testDi = new DependencyInjectionContainer();
+		$route->setDependencyInjectionContainer($testDi);
+		$controller = new TestController();
+		$route->addRoute(new SimpleRouting('/foo', $controller));
+		$route->dispatch($serverRequest, $this);
+		$this->assertEquals($testDi, $controller->getDI());
 	}
 
 }

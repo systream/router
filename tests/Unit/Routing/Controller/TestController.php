@@ -100,4 +100,9 @@ class TestController extends ControllerAbstract
 		$response->getBody()->write($methodName);
 		return $response;
 	}
+
+	public function getDI()
+	{
+		return $this->getDependencyInjectionContainer();
+	}
 }
