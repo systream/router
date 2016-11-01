@@ -2,6 +2,7 @@
 namespace Systream\Routing;
 
 use Systream\Controller\ControllerInterface;
+use Systream\Routing\Exception\RoutingException;
 
 class SimpleRouting extends RoutingAbstract implements RouteInterface
 {
@@ -36,8 +37,8 @@ class SimpleRouting extends RoutingAbstract implements RouteInterface
 	}
 
 	/**
-	 * @param $uri
-	 * @return string
+	 * @param string $uri
+	 * @return ControllerInterface|bool
 	 */
 	public function getController($uri)
 	{

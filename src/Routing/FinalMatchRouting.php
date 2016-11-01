@@ -20,8 +20,8 @@ class FinalMatchRouting extends RoutingAbstract implements RouteInterface
 	}
 
 	/**
-	 * @param $uri
-	 * @return string
+	 * @param string $uri
+	 * @return ControllerInterface|bool
 	 */
 	public function getController($uri)
 	{

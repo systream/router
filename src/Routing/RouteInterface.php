@@ -8,7 +8,7 @@ interface RouteInterface {
 
 	/**
 	 * @param string $uri
-	 * @return ControllerInterface
+	 * @return ControllerInterface|bool
 	 */
 	public function getController($uri);
 
