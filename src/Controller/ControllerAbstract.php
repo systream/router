@@ -10,11 +10,6 @@ use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 abstract class ControllerAbstract implements ControllerInterface
 {
 	/**
-	 * @var DependencyInjectionContainerInterface
-	 */
-	private $dependencyInjectionContainer;
-
-	/**
 	 * @param string $methodType
 	 * @param ResponseInterface $response
 	 * @param ControllerRequestInterface $controllerRequest
@@ -41,23 +36,5 @@ abstract class ControllerAbstract implements ControllerInterface
 	{
 		return $response->withStatus(405, 'Method not allowed');
 	}
-
-	/**
-	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
-	 * @return void
-	 */
-	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer)
-	{
-		$this->dependencyInjectionContainer = $dependencyInjectionContainer;
-	}
-
-	/**
-	 * @return DependencyInjectionContainerInterface
-	 */
-	protected function getDependencyInjectionContainer()
-	{
-		return $this->dependencyInjectionContainer;
-	}
-
 
 }

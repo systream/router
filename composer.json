@@ -16,8 +16,7 @@
   },
   "require": {
     "php": ">=5.4.0 || >= 7.0",
-    "zendframework/zend-diactoros": "1.3.6",
-    "systream/dependency-injection-container": "^1.0"
+    "zendframework/zend-diactoros": "1.3.6"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.5"

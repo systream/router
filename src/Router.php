@@ -18,11 +18,6 @@ class Router implements RouterInterface
 	protected $routes = array();
 
 	/**
-	 * @var DependencyInjectionContainerInterface
-	 */
-	private $di;
-
-	/**
 	 * @param RouteInterface $routeInterface
 	 */
 	public function addRoute(RouteInterface $routeInterface)
@@ -49,10 +44,6 @@ class Router implements RouterInterface
 	{
 		foreach ($this->routes as $route) {
 			if ($controller = $route->getController($serverRequest->getUri()->getPath())) {
-
-				if ($this->di) {
-					$controller->setDependencyInjectionContainer($this->di);
-				}
 				$controllerRequest = ControllerRequest::create($serverRequest, $route->getParams());
 				$response = $controller->callMethod(
 					$serverRequest->getMethod(),
@@ -64,14 +55,5 @@ class Router implements RouterInterface
 		}
 
 		throw new RouteNotFoundException(sprintf('No route found for %s', $serverRequest->getUri()->getPath()));
-	}
-
-	/**
-	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
-	 * @return void
-	 */
-	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer)
-	{
-		$this->di = $dependencyInjectionContainer;
 	}
 }

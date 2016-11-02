@@ -20,11 +20,4 @@ interface RouterInterface
 	 * @param EmitterInterface $emitter
 	 */
 	public function dispatch(ServerRequestInterface $serverRequest, EmitterInterface $emitter);
-
-	/**
-	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
-	 * @return void
-	 */
-	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer);
-
 }

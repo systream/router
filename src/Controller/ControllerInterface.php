@@ -19,10 +19,4 @@ interface ControllerInterface
 		ResponseInterface $response,
 		ControllerRequestInterface $controllerRequest
 	);
-
-	/**
-	 * @param DependencyInjectionContainerInterface $dependencyInjectionContainer
-	 * @return void
-	 */
-	public function setDependencyInjectionContainer(DependencyInjectionContainerInterface $dependencyInjectionContainer);
 }
