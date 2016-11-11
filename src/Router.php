@@ -2,8 +2,6 @@
 namespace Systream;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Systream\Controller\ControllerRequest;
-use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 use Systream\Router\Exception\RouteNotFoundException;
 use Systream\Router\RouterInterface;
 use Systream\Routing\RouteInterface;
@@ -44,16 +42,31 @@ class Router implements RouterInterface
 	{
 		foreach ($this->routes as $route) {
 			if ($controller = $route->getController($serverRequest->getUri()->getPath())) {
-				$controllerRequest = ControllerRequest::create($serverRequest, $route->getParams());
+
+				$serverRequest = $this->setAttributes($serverRequest, $route);
+
 				$response = $controller->callMethod(
 					$serverRequest->getMethod(),
 					new Response(),
-					$controllerRequest
+					$serverRequest
 				);
 				return $response;
 			}
 		}
 
 		throw new RouteNotFoundException(sprintf('No route found for %s', $serverRequest->getUri()->getPath()));
+	}
+
+	/**
+	 * @param ServerRequestInterface $serverRequest
+	 * @param RouteInterface $route
+	 * @return ServerRequestInterface
+	 */
+	private function setAttributes(ServerRequestInterface $serverRequest, RouteInterface $route)
+	{
+		foreach ($route->getParams() as $paramName => $paramValue) {
+			$serverRequest = $serverRequest->withAttribute($paramName, $paramValue);
+		}
+		return $serverRequest;
 	}
 }

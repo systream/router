@@ -2,7 +2,6 @@
 
 namespace Tests\Systream\Unit\Routing;
 
-use Systream\DependencyInjectionContainer;
 use Systream\Router;
 use Systream\Routing\FinalMatchRouting;
 use Systream\Routing\SimpleRouting;

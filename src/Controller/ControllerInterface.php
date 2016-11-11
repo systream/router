@@ -4,19 +4,19 @@ namespace Systream\Controller;
 
 
 use Psr\Http\Message\ResponseInterface;
-use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 interface ControllerInterface
 {
 	/**
 	 * @param string $methodType
 	 * @param ResponseInterface $response
-	 * @param ControllerRequestInterface $controllerRequest
+	 * @param ServerRequestInterface $request
 	 * @return ResponseInterface
 	 */
 	public function callMethod(
 		$methodType,
 		ResponseInterface $response,
-		ControllerRequestInterface $controllerRequest
+		ServerRequestInterface $request
 	);
 }

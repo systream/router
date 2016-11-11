@@ -4,8 +4,8 @@ namespace Tests\Systream\Unit\Routing\Controller;
 
 
 use Systream\Controller\ControllerAbstract;
-use Systream\Controller\ControllerRequest;
 use Zend\Diactoros\Response;
+use Zend\Diactoros\ServerRequest;
 
 class TestController extends ControllerAbstract
 {
@@ -30,56 +30,56 @@ class TestController extends ControllerAbstract
 
 	/**
 	 * @param Response $response
-	 * @param ControllerRequest $request
+	 * @param ServerRequest $request
 	 * @return Response
 	 */
-	public function get(Response $response, ControllerRequest $request)
+	public function get(Response $response, ServerRequest $request)
 	{
-		if ($request->getUrlParam('id')) {
-			$response->getBody()->write('param: ' . $request->getUrlParam('id') . ' ');
+		if ($request->getAttribute('id')) {
+			$response->getBody()->write('param: ' . $request->getAttribute('id') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
 	 * @param Response $response
-	 * @param ControllerRequest $request
+	 * @param ServerRequest $request
 	 * @return Response
 	 */
-	public function options(Response $response, ControllerRequest $request)
+	public function options(Response $response, ServerRequest $request)
 	{
-		if ($request->getUrlParam('id') && $request->getUrlParam('id2')) {
-			$response->getBody()->write('param: ' . $request->getUrlParam('id') . ',' . $request->getUrlParam('id2') . ' ');
+		if ($request->getAttribute('id') && $request->getAttribute('id2')) {
+			$response->getBody()->write('param: ' . $request->getAttribute('id') . ',' . $request->getAttribute('id2') . ' ');
 		}
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
 	 * @param Response $response
-	 * @param ControllerRequest $request
+	 * @param ServerRequest $request
 	 * @return Response
 	 */
-	public function post(Response $response, ControllerRequest $request)
+	public function post(Response $response, ServerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
 	 * @param Response $response
-	 * @param ControllerRequest $request
+	 * @param ServerRequest $request
 	 * @return Response
 	 */
-	public function put(Response $response, ControllerRequest $request)
+	public function put(Response $response, ServerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
 	}
 
 	/**
 	 * @param Response $response
-	 * @param ControllerRequest $request
+	 * @param ServerRequest $request
 	 * @return Response
 	 */
-	public function delete(Response $response, ControllerRequest $request)
+	public function delete(Response $response, ServerRequest $request)
 	{
 		return $this->sendResponse(__METHOD__, $response);
 	}
@@ -99,10 +99,5 @@ class TestController extends ControllerAbstract
 		}
 		$response->getBody()->write($methodName);
 		return $response;
-	}
-
-	public function getDI()
-	{
-		return $this->getDependencyInjectionContainer();
 	}
 }

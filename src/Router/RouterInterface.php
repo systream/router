@@ -3,7 +3,6 @@ namespace Systream\Router;
 
 
 use Psr\Http\Message\ServerRequestInterface;
-use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 use Systream\Routing\RouteInterface;
 use Zend\Diactoros\Response\EmitterInterface;
 

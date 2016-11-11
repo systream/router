@@ -5,24 +5,23 @@ namespace Systream\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Systream\DependencyInjectionContainer\DependencyInjectionContainerInterface;
 
 abstract class ControllerAbstract implements ControllerInterface
 {
 	/**
 	 * @param string $methodType
 	 * @param ResponseInterface $response
-	 * @param ControllerRequestInterface $controllerRequest
+	 * @param ServerRequestInterface $request
 	 * @return ResponseInterface
 	 */
 	public function callMethod(
 		$methodType,
 		ResponseInterface $response,
-		ControllerRequestInterface $controllerRequest
+		ServerRequestInterface $request
 	) {
 		$method = strtolower($methodType);
 		if (method_exists($this, $method)) {
-			return $this->$method($response, $controllerRequest);
+			return $this->$method($response, $request);
 		}
 
 		return $this->getMethodNotAllowedResponse($response);
